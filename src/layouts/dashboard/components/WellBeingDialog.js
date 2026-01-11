@@ -40,10 +40,10 @@ export default function WellBeingDialog({ open, onClose, onSubmit }) {
     boxShadow: '0 8px 28px -6px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.3)',
     borderRadius: 3,
     color: 'white',
-    p: 3,
+    p: 2,
     overflow: 'hidden',
-    minWidth: 440,
-    maxWidth: 720,
+    minWidth: 420,
+    maxWidth: 560,
   };
 
   const fieldSx = {
@@ -72,15 +72,15 @@ export default function WellBeingDialog({ open, onClose, onSubmit }) {
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="md"
+      maxWidth="sm"
       fullWidth
       PaperProps={{ sx: paperSx }}
       TransitionComponent={Transition}
       keepMounted
     >
       <DialogTitle sx={{ px: 3, py: 2.5, m: 0, typography: 'h6', fontWeight: 700 }}>Log Your Well Being</DialogTitle>
-      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 1.25, px: 3, pt: 0.5, pb: 1.5 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, maxWidth: 520, mx: 'auto', width: '100%' }}>
+      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 1, px: 2.25, pt: 0.5, pb: 1.25 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, maxWidth: 420, mx: 'auto', width: '100%' }}>
           <Autocomplete
             options={EMOTION_OPTIONS}
             value={emotion ? emotion : null}
