@@ -152,11 +152,11 @@ export default function WellBeingDialog({ open, onClose, onSubmit }) {
         </Box>
       </DialogContent>
       <DialogActions sx={{ px: 3, py: 1.75, borderTop: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)', display: 'flex', justifyContent: 'flex-end' }}>
-        <VuiBox sx={{ flex: 1 }} />
-        <VuiBox>
+        <Box sx={{ flex: 1 }} />
+        <Box>
           <Button onClick={onClose} sx={{ color: '#bfc6e0', mr: 1, textTransform: 'none', fontWeight: 500 }}>Cancel</Button>
           <Button onClick={handleSubmit} variant="contained" color="info" sx={{ borderRadius: 2.5, px: 3.5, fontWeight: 600, boxShadow: '0 4px 14px -2px rgba(76,119,255,0.45)', background: 'rgba(44, 50, 90, 0.85)' }}>Add</Button>
-        </VuiBox>
+        </Box>
       </DialogActions>
     </Dialog>
   );
