@@ -300,45 +300,9 @@ export default function AddTodoDialog({ open, onClose, onAdd }) {
         </Box>
       </DialogContent>
       {/* Calendar dialog: match Caring Hub / Appointments popup styling */}
-      <Dialog
-        open={showCalendar}
-        onClose={() => setShowCalendar(false)}
-        maxWidth="sm"
-        fullWidth
-        TransitionComponent={Transition}
-        keepMounted
-        PaperProps={{ sx: {
-          background: 'linear-gradient(145deg, rgba(24,26,48,0.92) 0%, rgba(22,24,45,0.94) 70%)',
-          boxShadow: '0 8px 28px -4px rgba(0,0,0,0.55), 0 4px 12px -2px rgba(0,0,0,0.4)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: 5,
-          color: 'white',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          p: 3,
-          minWidth: 520
-        } }}
-      >
-        <DialogTitle sx={{ color: 'white', fontWeight: 700, fontSize: 20, pb: 1.5 }}>Pick a date</DialogTitle>
-        <DialogContent sx={{ p: 0, px: 2, pt: 1 }}>
-          <Box sx={{ width: '100%', p: 1 }}>
-            <MiniDayCalendar />
-          </Box>
-        </DialogContent>
-        <DialogActions sx={{ px: 2, pb: 2 }}>
-          <Button onClick={() => setShowCalendar(false)} sx={{ textTransform: 'none', color: '#bfc6e0' }}>Cancel</Button>
-          <Button onClick={() => {
-            if (globalSelectedDate) setDate(formatDate(globalSelectedDate));
-            setShowCalendar(false);
-          }} variant="contained" color="info">Select</Button>
-        </DialogActions>
-      </Dialog>
       <DialogActions sx={{ px: 3, py: 1.75, borderTop: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-        <Box sx={{ flex: 1 }} />
-        <Box>
-          <Button onClick={() => { reset(); onClose(); }} sx={{ color: '#bfc6e0', mr: 1, textTransform: 'none', fontWeight: 500 }}>Cancel</Button>
-          <Button onClick={handleSubmit} disabled={!label.trim() && !desc.trim()} variant='contained' color='info' sx={{ borderRadius: 2.5, px: 3.5, fontWeight: 600, boxShadow: '0 4px 14px -2px rgba(76,119,255,0.45)', background: 'rgba(44, 50, 90, 0.85)' }}>Add</Button>
-        </Box>
+        <Button onClick={() => { reset(); onClose(); }} sx={{ color: '#bfc6e0', mr: 1, textTransform: 'none', fontWeight: 500 }}>Cancel</Button>
+        <Button onClick={handleSubmit} disabled={!label.trim() && !desc.trim()} variant='contained' color='info' sx={{ borderRadius: 2.5, px: 3.5, fontWeight: 600, boxShadow: '0 4px 14px -2px rgba(76,119,255,0.45)', background: 'rgba(44, 50, 90, 0.85)' }}>Add</Button>
       </DialogActions>
     </Dialog>
   );
