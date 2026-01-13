@@ -165,7 +165,7 @@ function Tables() {
     '& .MuiOutlinedInput-notchedOutline': { border: '1px solid rgba(255, 255, 255, 0.06)' },
     '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(255, 255, 255, 0.12)' },
     '& .Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(106, 106, 252, 0.4)' },
-    '& .MuiInputBase-input': { color: '#e7e9f3', fontSize: 14, py: 1, background: 'transparent' },
+    '& .MuiInputBase-input': { color: '#e7e9f3', fontSize: 14, py: 0.6, background: 'transparent' },
     '& .MuiSelect-select': { background: 'transparent' },
     '& .MuiInputLabel-root': {
       color: '#6b7199',
@@ -1145,23 +1145,17 @@ function Tables() {
             }}
           >
               <Grid container spacing={1} alignItems="center" wrap="nowrap" sx={{ overflowX: 'auto', gap: 1 }}>
-              <Grid item sx={{ flex: '0 0 180px', minWidth: 140 }}>
+              <Grid item sx={{ flex: '0 0 150px', minWidth: 130 }}>
                 <LineLabelTextField
                   label="Doctor or Specialty"
                   value={provQuery}
                   onChange={e=>setProvQuery(e.target.value)}
                   fullWidth
                   InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }}
-                  sx={{
-                    ...fieldSx,
-                    '& .MuiInputBase-input': {
-                      py: 0.75,
-                      fontSize: 14
-                    }
-                  }}
+                  sx={fieldSx}
                 />
               </Grid>
-              <Grid item sx={{ flex: '0 0 180px', minWidth: 140 }}>
+              <Grid item sx={{ flex: '0 0 150px', minWidth: 130 }}>
                 <Autocomplete
                   size="small"
                   options={[...new Set([...(Array.isArray(window?.__ACCOUNT_INSURANCE__)? window.__ACCOUNT_INSURANCE__: []), ...insuranceOptions])].slice(0,300)}
@@ -1183,7 +1177,7 @@ function Tables() {
                   autoHighlight
                 />
               </Grid>
-              <Grid item sx={{ flex: '0 0 120px', minWidth: 100 }}>
+              <Grid item sx={{ flex: '0 0 100px', minWidth: 90 }}>
                 <LineLabelTextField size="small" label="ZIP" value={provZip} onChange={e=>setProvZip(e.target.value)} fullWidth InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }} sx={fieldSx} />
               </Grid>
               <Grid item sx={{ flex: '0 0 56px', display: 'flex', alignItems: 'center' }}>
