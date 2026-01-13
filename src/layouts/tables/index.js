@@ -46,6 +46,9 @@ import Invoices from "layouts/billing/components/Invoices";
 import BillingInformation from "layouts/billing/components/BillingInformation";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
+import CircularProgress from '@mui/material/CircularProgress';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import getApiBase from "../../lib/apiBase";
 import insuranceOptions from "lib/insuranceOptions";
 
@@ -85,6 +88,9 @@ function Tables() {
   const [provLoading, setProvLoading] = useState(false);
   const [provResults, setProvResults] = useState([]);
   const [provSearchAttempted, setProvSearchAttempted] = useState(false);
+
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   // Handlers for add/edit
   const handleOpenEdit = (appt, idx) => handleOpenApptEdit(appt, idx);
@@ -1138,8 +1144,8 @@ function Tables() {
               gap: 1.5
             }}
           >
-              <Grid container spacing={1.5} alignItems="center">
-              <Grid item xs={12} md={6} lg={5}>
+              <Grid container spacing={1.5} alignItems="center" wrap="nowrap" sx={{ overflowX: 'auto', gap: 1.5 }}>
+              <Grid item sx={{ flex: '1 1 40%', minWidth: { xs: 200, sm: 260, md: 320 } }}>
                 <LineLabelTextField
                   label="Doctor or Specialty"
                   value={provQuery}
@@ -1147,10 +1153,16 @@ function Tables() {
                   fullWidth
                   InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }}
                   InputProps={{ startAdornment: (<Box component="span" sx={{ color: '#aeb3d5', mr: 1 }}><SearchIcon fontSize="small" /></Box>) }}
-                  sx={fieldSx}
+                  sx={{
+                    ...fieldSx,
+                    '& .MuiInputBase-input': {
+                      py: { xs: 0.5, md: 1 },
+                      fontSize: { xs: 13, md: 14 }
+                    }
+                  }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={3} lg={3}>
+              <Grid item sx={{ flex: '0 0 180px', minWidth: 140, ml: { xs: 1, md: 0 } }}>
                 <Autocomplete
                   size="small"
                   options={[...new Set([...(Array.isArray(window?.__ACCOUNT_INSURANCE__)? window.__ACCOUNT_INSURANCE__: []), ...insuranceOptions])].slice(0,300)}
@@ -1158,7 +1170,7 @@ function Tables() {
                   value={provInsurance || null}
                   onChange={(e,val)=> setProvInsurance(val || "")}
                   renderInput={(params)=>(
-                    <TextField
+                    <LineLabelTextField
                       {...params}
                       label="Insurance"
                       placeholder="Type or choose"
@@ -1172,25 +1184,31 @@ function Tables() {
                   autoHighlight
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item sx={{ flex: '0 0 120px', minWidth: 100, ml: { xs: 1, md: 0 } }}>
                 <LineLabelTextField size="small" label="ZIP" value={provZip} onChange={e=>setProvZip(e.target.value)} fullWidth InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }} sx={fieldSx} />
               </Grid>
-              <Grid item xs={12} md={2} lg={2} sx={{ display: 'flex', alignItems: 'stretch' }}>
+              <Grid item sx={{ flex: '0 0 56px', display: 'flex', alignItems: 'center', ml: { xs: 1, md: 1 } }}>
                 <Button
                   variant="contained"
                   color="info"
                   onClick={runProviderSearch}
                   disabled={provLoading}
+                  title="Search providers"
+                  aria-label="Search providers"
                   sx={{
                     borderRadius: 2,
                     fontWeight: 600,
-                    px: 3,
+                    p: 0.5,
                     minHeight: 40,
-                    flex: 1,
+                    minWidth: 40,
+                    width: 40,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     background: 'linear-gradient(90deg, rgba(36,99,235,0.9) 0%, rgba(13,148,210,0.95) 100%)'
                   }}
                 >
-                  {provLoading ? 'Searching…' : 'Search'}
+                  {provLoading ? <CircularProgress size={20} color="inherit" /> : <SearchIcon fontSize="small" />}
                 </Button>
               </Grid>
             </Grid>
