@@ -1144,25 +1144,24 @@ function Tables() {
               gap: 1.5
             }}
           >
-              <Grid container spacing={1.5} alignItems="center" wrap="nowrap" sx={{ overflowX: 'auto', gap: 1.5 }}>
-              <Grid item sx={{ flex: '1 1 40%', minWidth: { xs: 200, sm: 260, md: 320 } }}>
+              <Grid container spacing={1} alignItems="center" wrap="nowrap" sx={{ overflowX: 'auto', gap: 1 }}>
+              <Grid item sx={{ flex: '0 0 180px', minWidth: 140 }}>
                 <LineLabelTextField
                   label="Doctor or Specialty"
                   value={provQuery}
                   onChange={e=>setProvQuery(e.target.value)}
                   fullWidth
                   InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }}
-                  InputProps={{ startAdornment: (<Box component="span" sx={{ color: '#aeb3d5', mr: 1 }}><SearchIcon fontSize="small" /></Box>) }}
                   sx={{
                     ...fieldSx,
                     '& .MuiInputBase-input': {
-                      py: { xs: 0.5, md: 1 },
-                      fontSize: { xs: 13, md: 14 }
+                      py: 0.75,
+                      fontSize: 14
                     }
                   }}
                 />
               </Grid>
-              <Grid item sx={{ flex: '0 0 180px', minWidth: 140, ml: { xs: 1, md: 0 } }}>
+              <Grid item sx={{ flex: '0 0 180px', minWidth: 140 }}>
                 <Autocomplete
                   size="small"
                   options={[...new Set([...(Array.isArray(window?.__ACCOUNT_INSURANCE__)? window.__ACCOUNT_INSURANCE__: []), ...insuranceOptions])].slice(0,300)}
@@ -1184,10 +1183,10 @@ function Tables() {
                   autoHighlight
                 />
               </Grid>
-              <Grid item sx={{ flex: '0 0 120px', minWidth: 100, ml: { xs: 1, md: 0 } }}>
+              <Grid item sx={{ flex: '0 0 120px', minWidth: 100 }}>
                 <LineLabelTextField size="small" label="ZIP" value={provZip} onChange={e=>setProvZip(e.target.value)} fullWidth InputLabelProps={{ shrink: true, style: { color: '#6b7199' } }} sx={fieldSx} />
               </Grid>
-              <Grid item sx={{ flex: '0 0 56px', display: 'flex', alignItems: 'center', ml: { xs: 1, md: 1 } }}>
+              <Grid item sx={{ flex: '0 0 56px', display: 'flex', alignItems: 'center' }}>
                 <Button
                   variant="contained"
                   color="info"
